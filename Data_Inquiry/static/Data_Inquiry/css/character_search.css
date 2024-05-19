@@ -1,0 +1,41 @@
+.img-card-top {
+  width: 100%; /* 부모 요소의 너비에 맞춰서 이미지 크기 조정 */
+  aspect-ratio: 4 / 3; /* 원하는 가로 세로 비율 (예: 4:3 비율) */
+  object-fit: cover; /* 이미지가 요소를 가득 채우도록 조정, 필요시 잘림 */
+  object-position: top; /* 이미지의 상단 부분을 중심으로 표시 */
+}
+
+/* 입력 창 길이 조정 */
+.form-group input[type="text"] {
+  flex-grow: 1; /* 입력 창이 가능한 한 넓어지도록 */
+  min-width: 200px; /* 입력 창의 최소 너비 설정 */
+}
+
+.card {
+  height: 510px; /* 원하는 높이 값으로 설정 */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex: 1;
+  overflow: auto;
+  /* 내용이 카드 크기를 초과할 경우 스크롤바가 생김 */
+}
+
+.footer {
+  text-align: center; /* 텍스트를 가운데로 정렬합니다. */
+  padding: 5px 0; /* 상하 패딩을 줍니다. */
+  background-color: #f2f2f2; /* 배경색을 설정합니다. */
+  color: #666; /* 글자색을 설정합니다. */
+  position: fixed; /* footer를 화면 하단에 고정합니다. */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

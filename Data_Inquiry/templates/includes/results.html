@@ -1,0 +1,28 @@
+{% load static %}
+
+{% if closer_data %}
+    <h2>"{{search_query}}"에 대한 {% if search_type == 'character' %} 캐릭터 {% else %} 클로저 {% endif %} 검색결과 </h2>
+    <div class="row">
+        {% for data in closer_data %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'Data_Crawling/images/'|add:data.closer|add:'.png' %}" class="card-img-top img-card-top" alt="img err">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.character_name }}</h5>
+                        <p class="card-text">
+                            랭킹: {{ data.ranking }}<br>
+                            레벨: {{data.level}}<br>
+                            등급: {{data.grade}}<br>
+                            캐릭터: {{ data.closer }}<br>
+                            클로저명: {{ data.closer_name }}<br>
+                            종합 전투력: {{ data.total_combat_power }}<br>
+                            갱신일: {{data.date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-secondary">검색 결과가 없습니다.</p>
+{% endif %}
