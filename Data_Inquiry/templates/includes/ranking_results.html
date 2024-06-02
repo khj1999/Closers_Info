@@ -1,0 +1,87 @@
+{% load static %}
+{% if closer_data %}
+    <h2>"{{character_type}}"에 대한 랭킹 조회 결과</h2>
+    <div class="row">
+        {% for data in closer_data %}
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-3">
+                            <!-- img-focus 클래스 추가 -->
+                            <img src="{% static 'Data_Crawling/images/'|add:data.closer|add:'.png' %}" class="img-fluid rounded-start img-focus" alt="이미지 오류">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <table class="card-table">
+                                    <tr>
+                                        <th><h5 class="card-title">{{ data.character_name }} #{{data.rank}}</h5></th>
+                                    </tr>
+                                    <tr>
+                                        <th>캐릭터 랭킹:</th>
+                                        <td>{{ data.ranking }}</td>
+                                        <th>레벨:</th>
+                                        <td>{{ data.level }}</td>
+                                        <th>등급:</th>
+                                        <td>{{ data.grade }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>캐릭터:</th>
+                                        <td>{{ data.closer }}</td>
+                                        <th>클로저명:</th>
+                                        <td>{{ data.closer_name }}</td>
+                                        <th>종합 전투력:</th>
+                                        <td>{{ data.total_combat_power }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><p class="card-text"><small class="text-muted">갱신일: {{ data.date }}</small></p></th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+        <ul class="pagination">
+          {% if closer_data.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous" onclick="loadPage({{ closer_data.previous_page_number }})">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+      
+          {% for i in page_range %}
+            {% if closer_data.number == i %}
+              <li class="page-item active"><a class="page-link" href="#" onclick="loadPage({{ i }})">{{ i }}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="#" onclick="loadPage({{ i }})">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+      
+          {% if closer_data.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next" onclick="loadPage({{ closer_data.next_page_number }})">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+    </nav>    
+{% else %}
+    <p class="text-secondary">랭킹 데이터가 없습니다.</p>
+{% endif %}

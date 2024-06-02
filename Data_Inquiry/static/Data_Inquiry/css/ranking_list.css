@@ -1,0 +1,10 @@
+.footer {
+    text-align: center; /* 텍스트를 가운데로 정렬합니다. */
+    padding: 5px 0; /* 상하 패딩을 줍니다. */
+    background-color: #f2f2f2; /* 배경색을 설정합니다. */
+    color: #666; /* 글자색을 설정합니다. */
+    position: fixed; /* footer를 화면 하단에 고정합니다. */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

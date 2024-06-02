@@ -10,28 +10,27 @@
 </head>
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url "character_search" %}">Closers Info</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto"> <!-- 여기에 ml-auto 클래스를 추가 -->
-            <li class="nav-item active">
-              <a class="nav-link" href="#">검색<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">랭킹</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">통계</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">비활성화</a>
-            </li>
-          </ul>
-        </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'character_search' %}">Closers Info</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% url 'character_search' as character_search_url %}
+                    <li class="nav-item {% if request.path == character_search_url %}active{% endif %}">
+                        <a class="nav-link" href="{{ character_search_url }}">검색<span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    {% url 'ranking_list' as ranking_list_url %}
+                    <li class="nav-item {% if request.path == ranking_list_url %}active{% endif %}">
+                        <a class="nav-link" href="{{ ranking_list_url }}">랭킹</a>
+                    </li>
+                    
+                    <!-- 추가적인 메뉴 항목 -->
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -52,7 +51,6 @@
                 <button type="submit" class="btn btn-primary">검색</button>
             </div>
         </form>
-        <hr>
         <div id="results"></div>
     </div>
     <script>
